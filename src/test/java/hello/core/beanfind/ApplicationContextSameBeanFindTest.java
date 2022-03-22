@@ -39,7 +39,8 @@ public class ApplicationContextSameBeanFindTest {
         Map<String, hello.core.member.MemberRepository> beansOfType = ac
             .getBeansOfType(MemberRepository.class);
         for (String key : beansOfType.keySet()) {
-            System.out.println("key + \"value = \" + beansOfType.get(key) = " + key + " \n value = " + beansOfType.get(key));
+            System.out.println("key + \"value = \" + beansOfType.get(key) = " + key + " "
+                + " value = " + beansOfType.get(key));
         }
         System.out.println("beansOfType = " + beansOfType);
         org.assertj.core.api.Assertions.assertThat(beansOfType.size()).isEqualTo(2);

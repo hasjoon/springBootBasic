@@ -28,11 +28,7 @@ public class ApplicationContextExtendsFindTest {
 
     }
 
-//    @Test
-//    @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 빈 이름을 지정하면 된다")
-//    void findBeanByName{
-//        Member
-//    }
+
 
 
     @Configuration

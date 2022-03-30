@@ -35,6 +35,6 @@ public class ComponentFilterAppConfigTest {
         excludeFilters = @Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class)
     )
     static class ComponentFilterAppConfig{
-
+        
     }
 }

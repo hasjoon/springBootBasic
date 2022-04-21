@@ -1,9 +1,8 @@
 package lifecycle;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import javax.annotation.PreDestroy; //javax는 자바에서 공식으로 지원하는것, 즉 스프링에 종속적인 기술이 아니다 = 스프링이 아닌 다른 컨테이너 에서도 잘 동작함
+
 
 public class NetworkClient {
 
@@ -12,8 +11,7 @@ public class NetworkClient {
 
     public NetworkClient(){ //생성자
         System.out.println("생성자 호출, url = " + url);
-        connect();
-        call("초기화 연결 메세지");
+
     }
 
     public void setUrl(String url) { //외부에서 넣을 수 있음

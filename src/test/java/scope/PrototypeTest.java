@@ -23,6 +23,10 @@ public class PrototypeTest {
 
         Assertions.assertThat(prototypeBean1).isNotSameAs(prototypeBean2);
 
+
+        prototypeBean1.destroy(); //만약 destroy할 필요가 있으면 이렇게 해줘야됨
+        prototypeBean2.destroy();
+        ac.close();
     }
 
     @Scope("prototype")

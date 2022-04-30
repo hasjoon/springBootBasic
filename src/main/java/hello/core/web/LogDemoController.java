@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
 
     @RequestMapping("log-demo")
     @ResponseBody //String 문자 그대로 보냄
-    public String logDemo(HttpServletRequest request) { //자바 제공 서블릿규약. 고객 요청정보 받음
+    public String logDemo(HttpServletRequest request) throws InterruptedException{ //자바 제공 서블릿규약. 고객 요청정보 받음
 
-        String requestURL = request.getRequestURI();
+        String requestURL = request.getRequestURI().toString();
         //고객이 어떤 URL조회했는지 나옴
-        MyLogger myLogger = myLoggerProvider.getObject();
+
+        System.out.println("myLogger = " + myLogger.getClass());
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");

@@ -1,31 +1,29 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor //파이널이 붙은 (필수값들) 것들을 가지고 constructor (생성자)를 만들어줌
 public class OrderServiceImpl implements OrderService {
 
 
 
     private final MemberRepository memberRepository;
-//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-//    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
-//    private DiscountPolicy discountPolicy; //dip를 지킴 근데 구체객체가 없어서 안돌아감
     private final DiscountPolicy discountPolicy; //파이널 있으면 기본할당 or 생성자 할당 필요
 
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository,
-        DiscountPolicy discountPolicy) {
+    @Autowired //1. 생성자 하나시 코드생략가능
+    public OrderServiceImpl(MemberRepository memberRepository,@MainDiscountPolicy DiscountPolicy rateDiscountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+        this.discountPolicy = rateDiscountPolicy;
+    } //-> 롬복의 @RequiredArgsConstructor가 만들어줄것임
+
 
     @Override
     public Order creatOrder(Long memberId, String itemName, int itemPrice) {
